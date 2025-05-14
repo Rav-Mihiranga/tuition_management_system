@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class TeacherReg extends StatefulWidget {
@@ -8,6 +9,15 @@ class TeacherReg extends StatefulWidget {
 }
 
 class _TeacherRegState extends State<TeacherReg> {
+  final TextEditingController _fullNameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _addressController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,34 +55,39 @@ class _TeacherRegState extends State<TeacherReg> {
                           ),
                         ),
                         const SizedBox(height: 20),
-
-                        _buildTextField(label: "Full Name"),
+                        _buildTextField(
+                            controller: _fullNameController,
+                            label: "Full Name"),
                         const SizedBox(height: 15),
-
-                        _buildTextField(label: "Email"),
+                        _buildTextField(
+                            controller: _emailController, label: "Email"),
                         const SizedBox(height: 15),
-
-                        _buildTextField(label: "Phone Number"),
+                        _buildTextField(
+                            controller: _phoneController,
+                            label: "Phone Number"),
                         const SizedBox(height: 15),
-
-                        _buildTextField(label: "Address"),
+                        _buildTextField(
+                            controller: _addressController, label: "Address"),
                         const SizedBox(height: 15),
-
-                        _buildTextField(label: "Username"),
+                        _buildTextField(
+                            controller: _usernameController, label: "Username"),
                         const SizedBox(height: 15),
-
-                        _buildTextField(label: "Password", isPassword: true),
+                        _buildTextField(
+                            controller: _passwordController,
+                            label: "Password",
+                            isPassword: true),
                         const SizedBox(height: 15),
-
-                        _buildTextField(label: "Confirm Password", isPassword: true),
+                        _buildTextField(
+                            controller: _confirmPasswordController,
+                            label: "Confirm Password",
+                            isPassword: true),
                         const SizedBox(height: 25),
-
                         SizedBox(
                           width: double.infinity,
                           height: 50,
                           child: ElevatedButton(
                             onPressed: () {
-                              // Handle registration
+                              _registerUser();
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xFF996BA7),
@@ -82,18 +97,18 @@ class _TeacherRegState extends State<TeacherReg> {
                             ),
                             child: const Text(
                               "Register",
-                              style: TextStyle(fontSize: 18, color: Colors.white),
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.white),
                             ),
                           ),
                         ),
                         const SizedBox(height: 20),
-
                         TextButton(
                           onPressed: () {
-                            // Navigate back to login
+                            Navigator.pop(context);
                           },
                           child: const Text(
-                            "Back to Login",
+                            "Back",
                             style: TextStyle(
                               color: Colors.teal,
                               fontSize: 16,
@@ -112,9 +127,13 @@ class _TeacherRegState extends State<TeacherReg> {
       ),
     );
   }
-  
-  Widget _buildTextField({required String label, bool isPassword = false}) {
+
+  Widget _buildTextField(
+      {required TextEditingController controller,
+      required String label,
+      bool isPassword = false}) {
     return TextField(
+      controller: controller,
       obscureText: isPassword,
       decoration: InputDecoration(
         labelText: label,
@@ -127,5 +146,36 @@ class _TeacherRegState extends State<TeacherReg> {
         ),
       ),
     );
+  }
+
+  // Method to register user and send data to Firestore
+  Future<void> _registerUser() async {
+    // Validate form fields if necessary
+    if (_passwordController.text != _confirmPasswordController.text) {
+      // Show error if passwords don't match
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("Passwords do not match")));
+      return;
+    }
+
+    // Create a user document in Firestore
+    try {
+      await FirebaseFirestore.instance.collection('users').add({
+        'full_name': _fullNameController.text,
+        'email': _emailController.text,
+        'phone_number': _phoneController.text,
+        'address': _addressController.text,
+        'username': _usernameController.text,
+        'password':
+            _passwordController.text, // Note: Password is not encrypted here
+      });
+
+      // Optionally navigate to another page, like a success screen
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("Registration successful")));
+    } catch (e) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("Error: $e")));
+    }
   }
 }
