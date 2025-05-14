@@ -6,14 +6,14 @@ import '../components/course_card.dart';
 import '../components/bottom_nav_bar.dart';
 import '../components/upcoming_section.dart';
 import '../services/course_service.dart';
-
-
+import 'student_notification.dart';
 
 class HomeScreen extends StatelessWidget {
+  final String studentId;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final CourseService courseService = CourseService();
 
-  HomeScreen({super.key}); // <-- added
+  HomeScreen({super.key, required this.studentId}); // <-- added
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +27,13 @@ class HomeScreen extends StatelessWidget {
               // decoration: BoxDecoration(
               //   color: Colors.blueAccent,
               // ),
-              accountName: Text('Achini Perera', style: TextStyle(fontWeight: FontWeight.bold)),
+              accountName: Text('Achini Perera',
+                  style: TextStyle(fontWeight: FontWeight.bold)),
               accountEmail: Text('Achiniperera@gmail.com'),
-              currentAccountPicture:CircleAvatar(
-                          radius: 30,
-                          backgroundImage: AssetImage("assets/images/profile.jpg"),
-                        ),
+              currentAccountPicture: CircleAvatar(
+                radius: 30,
+                backgroundImage: AssetImage("assets/images/profile.jpg"),
+              ),
             ),
             Expanded(
               child: ListView(
@@ -56,7 +57,10 @@ class HomeScreen extends StatelessWidget {
                     leading: Icon(Icons.notifications),
                     title: Text('Notifications'),
                     onTap: () {
-                      Navigator.pop(context);
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (_) => StudentNotificationsPage(studentId: studentId)),  
+                      );
                     },
                   ),
                   ListTile(
@@ -89,7 +93,6 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-
       bottomNavigationBar: BottomNavBar(),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -101,8 +104,11 @@ class HomeScreen extends StatelessWidget {
               }),
               FeatureIconsRow(),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: Text('Featured Courses', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                child: Text('Featured Courses',
+                    style:
+                        TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
               ),
               StreamBuilder<QuerySnapshot>(
                 stream: courseService.getFeaturedCourses(),
@@ -111,7 +117,8 @@ class HomeScreen extends StatelessWidget {
                     return Center(child: CircularProgressIndicator());
                   }
                   if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-                    return Center(child: Text('No featured courses available.'));
+                    return Center(
+                        child: Text('No featured courses available.'));
                   }
 
                   final courses = snapshot.data!.docs;

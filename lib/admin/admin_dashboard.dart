@@ -3,6 +3,7 @@ import 'package:tuition_management_system/admin/payment.dart';
 import 'package:tuition_management_system/admin/student_reg.dart';
 import 'package:tuition_management_system/admin/teacher_reg.dart';
 import 'package:tuition_management_system/teacher/teachers.dart';
+import 'package:tuition_management_system/admin/admin_notification.dart';
 
 class AdminDashboard extends StatelessWidget {
   const AdminDashboard({super.key});
@@ -186,7 +187,7 @@ class AdminDashboard extends StatelessWidget {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => StudentReg()),
+                        MaterialPageRoute(builder: (context) => AdminNotificationPage()),
                       );
                     },
                     child: Container(

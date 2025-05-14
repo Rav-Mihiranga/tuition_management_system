@@ -57,6 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
         final storedPassword = data['password'] as String;
         if (storedPassword == password) {
           // Successful login
+          final docId = query.docs.first.id; 
           switch (widget.role) {
             case 'admin':
               Navigator.pushReplacement(
@@ -67,7 +68,9 @@ class _LoginScreenState extends State<LoginScreen> {
             case 'student':
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (_) => HomeScreen()),
+                MaterialPageRoute(builder: (_) => HomeScreen(
+                  studentId: docId,
+                )),
               );
               break;
             case 'teacher':
