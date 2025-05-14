@@ -182,6 +182,47 @@ class AdminDashboard extends StatelessWidget {
                       ),
                     ),
                   ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => StudentReg()),
+                      );
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF996BA7),
+                        borderRadius: BorderRadius.circular(
+                          70,
+                        ),
+                      ),
+                      height:
+                          80, 
+                      width: 170, 
+                      child: Column(
+                        mainAxisAlignment:
+                            MainAxisAlignment
+                                .center, 
+                        children: [
+                          Icon(
+                            Icons.person_outline,
+                            color: Colors.white,
+                          ), 
+                          SizedBox(
+                            height: 4,
+                          ),
+                          Text(
+                            "Send Notification",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 15,
+                            ), 
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ],
