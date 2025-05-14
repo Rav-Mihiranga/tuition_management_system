@@ -24,7 +24,7 @@ class TeacherFeatureIconsRow extends StatelessWidget {
     },
   ];
 
-  const TeacherFeatureIconsRow({super.key});
+  TeacherFeatureIconsRow({super.key});
 
   @override
   Widget build(BuildContext context) {

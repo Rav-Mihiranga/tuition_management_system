@@ -24,7 +24,7 @@ class FeatureIconsRow extends StatelessWidget {
     },
   ];
 
-  const FeatureIconsRow({super.key});
+  FeatureIconsRow({super.key});
 
   @override
   Widget build(BuildContext context) {
