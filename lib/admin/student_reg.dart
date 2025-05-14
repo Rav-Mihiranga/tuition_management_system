@@ -119,6 +119,7 @@ class _StudentRegState extends State<StudentReg> {
         'email': _emailController.text,
         'phone_number': _phoneController.text,
         'username': _usernameController.text,
+        'role': 'student', 
         'password': _passwordController.text, // In a real app, you should hash the password
       });
 

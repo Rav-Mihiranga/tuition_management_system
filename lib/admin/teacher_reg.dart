@@ -166,6 +166,7 @@ class _TeacherRegState extends State<TeacherReg> {
         'phone_number': _phoneController.text,
         'address': _addressController.text,
         'username': _usernameController.text,
+        'role': 'teacher',
         'password':
             _passwordController.text, // Note: Password is not encrypted here
       });
