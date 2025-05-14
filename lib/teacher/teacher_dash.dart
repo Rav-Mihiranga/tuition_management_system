@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';  // For Firestore and QuerySnapshot
+// For Firestore and QuerySnapshot
 import 'package:tuition_management_system/components/bottom_nav_bar.dart';
 // import 'package:mobile_e_learning_app/components/course_card.dart';  // Make sure to import your CourseCard widget
 import 'package:tuition_management_system/components/top_header.dart';
-import '../components/teacher_feature_icons_row.dart';
 
 import 'package:tuition_management_system/components/upcoming_section.dart';
 // import 'package:mobile_e_learning_app/services/course_service.dart';  // Import CourseService
@@ -105,6 +104,8 @@ class _TeacherDashState extends State<TeacherDash> {
 }
 
 class TeacherFeatureIconsRow extends StatelessWidget {
+  const TeacherFeatureIconsRow({super.key});
+
   // final CourseService courseService = CourseService();  // Keep for future use
 
   @override

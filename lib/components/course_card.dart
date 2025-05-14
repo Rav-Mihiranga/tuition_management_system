@@ -6,7 +6,7 @@ class CourseCard extends StatelessWidget {
   final String imageUrl; // <-- local asset path
   final Color color;
 
-  CourseCard({
+  const CourseCard({super.key, 
     required this.title,
     required this.author,
     required this.imageUrl,

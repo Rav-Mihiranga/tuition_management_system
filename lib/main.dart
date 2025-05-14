@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:tuition_management_system/Login/before_login.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // <-- important!
-  await Firebase.initializeApp(); // <-- wait for Firebase ready
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  ); // <-- wait for Firebase ready
   runApp(MyApp());
 }
 

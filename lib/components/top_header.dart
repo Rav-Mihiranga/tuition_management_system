@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class TopHeader extends StatelessWidget {
   final VoidCallback? onMenuPressed;
 
-  const TopHeader({Key? key, this.onMenuPressed}) : super(key: key);
+  const TopHeader({super.key, this.onMenuPressed});
 
   @override
   Widget build(BuildContext context) {

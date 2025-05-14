@@ -11,7 +11,9 @@ import '../services/course_service.dart';
 
 class HomeScreen extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  final CourseService courseService = CourseService(); // <-- added
+  final CourseService courseService = CourseService();
+
+  HomeScreen({super.key}); // <-- added
 
   @override
   Widget build(BuildContext context) {

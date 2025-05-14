@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "177351045579",
+    "project_id": "mobile-proj-95615",
+    "storage_bucket": "mobile-proj-95615.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:177351045579:android:2d184eeb6c72de7e1e064e",
+        "android_client_info": {
+          "package_name": "com.example.tuition_management_system"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQaOkIgAZaPUhbCwibhsedysNsgwk5OdM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

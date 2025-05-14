@@ -24,6 +24,8 @@ class TeacherFeatureIconsRow extends StatelessWidget {
     },
   ];
 
+  const TeacherFeatureIconsRow({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Padding(

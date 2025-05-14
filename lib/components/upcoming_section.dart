@@ -20,6 +20,8 @@ class UpcomingSection extends StatelessWidget {
     },
   ];
 
+  UpcomingSection({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
